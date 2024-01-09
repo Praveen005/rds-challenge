@@ -77,7 +77,7 @@ func decodeCode(jsonData string) (string, string){
 		return "", ""
 	}
 
-	// Extract "data" field
+	// Extracting "data" field
 	data := dataStruct.Data
 	dataString :=strings.Join(data, "")
 	arrowIndex := strings.Index(dataString, "➡➡➡")
@@ -97,7 +97,7 @@ func decodeCode(jsonData string) (string, string){
 	for _, val := range leftMcodes{
 		leftDecode = append(leftDecode, morse[val])
 	}
-	// fmt.Println("")
+	
 	for _, val := range rightMcodes{
 		rightDecode = morse[val]
 	}
@@ -137,10 +137,3 @@ func ProcessJSONArray(jsonArray []string){
 
 	fmt.Println(result);
 }
-
-
-
-var _ = morse
-var _ = JsonArray
-var _ = breakString
-var _ = decodeCode
