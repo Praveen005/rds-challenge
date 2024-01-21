@@ -108,7 +108,7 @@ func decodeCode(jsonData string) (string, string){
 	return s1, rightDecode
 }
 
-func ProcessJSONArray(jsonArray []string){
+func ProcessJSONArray(jsonArray []string) string{
 
 	var entries []struct{
 		key string
@@ -135,5 +135,5 @@ func ProcessJSONArray(jsonArray []string){
 		result = result + value.value
 	}
 
-	fmt.Println("The required chainCode is: ", result);
+	return result
 }
