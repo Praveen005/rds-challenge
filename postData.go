@@ -1,10 +1,11 @@
 package main
 
-import(
+import (
+	"encoding/json"
 	"fmt"
+	"io"
 	"net/http"
 	"strings"
-	"io"
 )
 
 const(
@@ -12,25 +13,41 @@ const(
 )
 
 
-func SubmitChaincode() {
+func SubmitChaincode(url string, ChainCode string)([]byte, error) {
 
-	dataToBeSent := fmt.Sprintf(`{ "chaincode": "%s" }`, ChainCode)
+    
+    type respToSubmit struct{
+      Chaincode string    `json:"chaincode"`
+    }
 
-    // Making the POST request
-    response, err := http.Post(submitURL, "application/json", strings.NewReader(dataToBeSent))
+    var val respToSubmit
+    val.Chaincode = ChainCode
+    serializedVal, err := json.Marshal(val)
+    if err != nil{
+      return nil, err
+    }
+
+    req, err := http.NewRequest("POST", url, strings.NewReader(string(serializedVal)))
+    req.Header.Set("Content-Type", "application/json")
+    if err != nil{
+      return nil, err
+    }
+    req.Header.Set("Cookie", cookieHdr)
+    client := &http.Client{}
+    response, err := client.Do(req)
+
     if err != nil {
-		fmt.Println(err.Error())
-
+      return nil, err
     }
     defer response.Body.Close()
 
     // Read the response from server
     responseBody, err := io.ReadAll(response.Body)
     if err != nil {
-       fmt.Println(err)
+        return nil, err
     }
 
-	//Printing the response
-    fmt.Println("Response from server:\n", string(responseBody))
+    fmt.Println("Submitted ChainCode is: ", ChainCode)
+    return responseBody, nil
 
 }

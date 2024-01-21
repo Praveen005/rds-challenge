@@ -135,6 +135,5 @@ func ProcessJSONArray(jsonArray []string) string{
 		result = result + value.value
 	}
 
-	// fmt.Println("The required chainCode is: ", result);
 	return result
 }

@@ -1,8 +1,13 @@
 package main
 
-import()
+import "fmt"
 
 func main() {
 	getDataFunc()
-	SubmitChaincode()
+	resp, err := SubmitChaincode(submitURL, ChainCode)
+	if err != nil{
+		fmt.Println(err.Error())
+		return
+	}
+	fmt.Println(string(resp))
 }
