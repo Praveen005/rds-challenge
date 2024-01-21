@@ -13,7 +13,7 @@ import (
 const (
 	getURL	  = "https://exam.ankush.wiki/assignments"
 	baseURL   = "https://exam.ankush.wiki/data?part="
-	cookieHdr = "connect.sid=s%3AKsYh6-5fnCkSPJzJx5sniFtHsHP8d.wiftarNatwREhke%2BIZc%2F2zU64%2FY1%2BJb76dK1dhbIHEk"
+	cookieHdr = "connect.sid=s%3ACQi5vL3_EXtFgKS3pUpSScFOUEjuoGwu.WN1Dei%2F1H6DxWVnnvyrxTdx2d%2BvWGWYkSkDLbSxqt8A"
 )
 
 var ChainCode string
